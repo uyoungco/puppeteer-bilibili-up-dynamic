@@ -1,14 +1,14 @@
-// const puppeteer = require('puppeteer');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer-core');
 
 // https://t.bilibili.com/553112545586555735
 
+const ENV = process.env.NODE_ENV === "development"
+console.log("PUPPETEER_EXECUTABLE_PATH", process.env.PUPPETEER_EXECUTABLE_PATH)
+
 const getScreenshot = async (id) => {
 
-  console.log("CHROMIUM_PATH", process.env.CHROMIUM_PATH)
-  console.log("PUPPETEER_EXECUTABLE_PATH", process.env.PUPPETEER_EXECUTABLE_PATH)
-
-  const browser = await puppeteer.launch({
+  const browser = ENV ? await puppeteer.launch() : await puppeteer.launch({
     args: ['--no-sandbox'],
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
   });
@@ -35,8 +35,6 @@ const getScreenshot = async (id) => {
     return null
   }
   
-  
-
 }
 
 exports.getScreenshot = getScreenshot
