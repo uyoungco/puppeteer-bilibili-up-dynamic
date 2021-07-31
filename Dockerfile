@@ -18,4 +18,4 @@ RUN npm config set registry "https://registry.npm.taobao.org/" \
 COPY . .
 
 EXPOSE 8081
-CMD [ "node", "index.js" ]
+CMD [ "npm", "run" ,"start" ]
