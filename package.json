@@ -1,5 +1,5 @@
 {
-  "name": "puppeteer-test",
+  "name": "puppeteer-bilibili-up-dynamic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
-    "puppeteer": "^10.1.0",
-    "qiniu": "^7.4.0"
+    "puppeteer": "1.11.0",
+    "puppeteer-core": "^10.1.0"
   }
 }

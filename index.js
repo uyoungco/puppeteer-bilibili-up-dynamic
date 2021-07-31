@@ -12,4 +12,4 @@ router.get("/api/puppeteer/v1/screenshot", screenshotControllers.api.screenshot)
 app
   .use(router.routes())
   .use(router.allowedMethods())
-app.listen(3000, () => console.log('开启成功'))
+app.listen(8081, () => console.log('开启成功'))
