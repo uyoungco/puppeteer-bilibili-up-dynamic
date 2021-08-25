@@ -41,11 +41,11 @@ const getScreenshot2 = async (cid) => {
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
   });
 
-  const page = await browser.newPage(); // 234407877
+  const page = await browser.newPage();
   await page.goto(`https://t.bilibili.com/${cid}`);
   // await page.screenshot({ path: 'example.png' });
   await page.addStyleTag({
-    content: "#internationalHeader, .panel-area, .lt-row, .unlogin-popover{display: none !important;}"
+    content: "#internationalHeader, .panel-area, .lt-row, .unlogin-popover{display: none!important;}"
   })
   
   let image
@@ -54,7 +54,7 @@ const getScreenshot2 = async (cid) => {
     image = await domCard.screenshot({ quality: 100, type: "jpeg",encoding: "base64" })
   } catch(e) {
     console.log(e)
-
+    return null
   }
   
   await page.close()
