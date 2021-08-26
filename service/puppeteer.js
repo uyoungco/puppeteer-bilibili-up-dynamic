@@ -38,7 +38,7 @@ const api = {
 
     ctx.body = {
       code: 400,
-      message: "图片截取失败或者上传失败!",
+      message: "图片截取失败",
       data: null,
     }
   }
