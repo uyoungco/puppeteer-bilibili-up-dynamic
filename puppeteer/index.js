@@ -32,7 +32,7 @@ const getScreenshot = async (id) => {
     return "data:image/jpg;base64," + image
   }
   return null
-} //a
+}
 
 const getScreenshot2 = async (cid) => {
 
