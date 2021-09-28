@@ -39,6 +39,11 @@ const getScreenshot = async (id) => {
   return null
 }
 
+/**
+ * 根据动态ID返回图片
+ * @param cid
+ * @return {Promise<string|null>}
+ */
 const getScreenshot2 = async (cid) => {
 
   const browser = ENV ? await puppeteer.launch() : await puppeteer.launch({
