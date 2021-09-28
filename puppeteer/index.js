@@ -43,7 +43,6 @@ const getScreenshot2 = async (cid) => {
 
   const page = await browser.newPage();
   await page.goto(`https://t.bilibili.com/${cid}`);
-  // await page.screenshot({ path: 'example.png' });
   await page.addStyleTag({
     content: "#internationalHeader, .panel-area, .lt-row, .unlogin-popover{display: none!important;}"
   })
