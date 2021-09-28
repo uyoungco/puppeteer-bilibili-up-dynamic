@@ -11,7 +11,7 @@ $ yarn dev
 #### 获取最近一条动态截图
 http://localhost:8081/api/puppeteer/v1/screenshot?id=[UP主ID]
 
-返回数据
+返回数据：
 ```json
   {
     "code": 200,
@@ -23,7 +23,7 @@ http://localhost:8081/api/puppeteer/v1/screenshot?id=[UP主ID]
 #### 获取指定动态截图
 http://localhost:8081/api/puppeteer/v1/screenshot?tid=[动态ID]
 
-返回数据
+返回数据：
 ```json
   {
     "code": 200,
