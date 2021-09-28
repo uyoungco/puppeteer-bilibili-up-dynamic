@@ -3,6 +3,11 @@ const puppeteer = require('puppeteer');
 const ENV = process.env.NODE_ENV === "development"
 console.log("PUPPETEER_EXECUTABLE_PATH", process.env.PUPPETEER_EXECUTABLE_PATH)
 
+/**
+ * 根据UP ID
+ * @param id UP主ID
+ * @return {Promise<string|null>}
+ */
 const getScreenshot = async (id) => {
 
   const browser = ENV ? await puppeteer.launch() : await puppeteer.launch({
