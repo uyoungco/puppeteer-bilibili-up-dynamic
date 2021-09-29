@@ -41,7 +41,7 @@ const getScreenshot = async (id) => {
 
 /**
  * 根据动态ID返回图片
- * @param cid
+ * @param cid 动态ID
  * @return {Promise<string|null>}
  */
 const getScreenshot2 = async (cid) => {
