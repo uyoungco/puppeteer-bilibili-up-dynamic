@@ -19,16 +19,19 @@ const getScreenshot = async (id) => {
   await page.goto(`https://space.bilibili.com/${id}/dynamic`);
   // await page.screenshot({ path: 'example.png' });
   await page.addStyleTag({
-    content: "#navigator-fixed, .lt-row{display: none !important;}"
+    content: `
+      #navigator-fixed, .lt-row, .to-top{display: none !important;}
+    `
   })
   
   let image
   try {
-    const domCard = await page.waitForSelector(".card")
-    image = await domCard.screenshot({ quality: 100, type: "jpeg",encoding: "base64" })
+    const dynamicListDom = await page.waitForSelector("#page-dynamic")
+    const dynamic = await dynamicListDom.$(".bili-dyn-list__item")
+    // console.log('dynamic', dynamic)
+    image = await dynamic.screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
   } catch(e) {
     console.log(e)
-
   }
   
   await page.close()
@@ -54,13 +57,21 @@ const getScreenshot2 = async (cid) => {
   const page = await browser.newPage();
   await page.goto(`https://t.bilibili.com/${cid}`);
   await page.addStyleTag({
-    content: "#internationalHeader, .panel-area, .lt-row, .unlogin-popover{display: none!important;}"
+    content: `
+      #internationalHeader,
+      .panel-area,
+      .lt-row,
+      .to-top
+      .unlogin-popover {
+        display: none!important;
+    }`
   })
   
   let image
   try {
-    const domCard = await page.waitForSelector(".card")
-    image = await domCard.screenshot({ quality: 100, type: "jpeg",encoding: "base64" })
+    const dynamicListDom = await page.waitForSelector("#page-dynamic")
+    const dynamic = await dynamicListDom.$(".bili-dyn-list__item")
+    image = await dynamic.screenshot({ quality: 100, type: "jpeg",encoding: "base64" })
   } catch(e) {
     console.log(e)
     return null
