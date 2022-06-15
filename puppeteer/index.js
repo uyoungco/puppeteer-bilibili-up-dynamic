@@ -27,13 +27,14 @@ const getScreenshot = async (id) => {
   let image
   try {
     const dynamicListDom = await page.waitForSelector("#page-dynamic")
-    const dynamic = await dynamicListDom.$$(".bili-dyn-list__item")
-    if (await dynamic[0].$('.bili-dyn-item__tag')) { // 判断数组下标0的dom是不是置顶
-      image = await dynamic[1].screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
-    } else {
-      image = await dynamic[0].screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
+    const dynamicList = await dynamicListDom.$$(".bili-dyn-list__item")
+    const isTop = await dynamicList[0].$('.bili-dyn-item__tag')
+    const dynamic = isTop ? dynamicList[1] : dynamicList[0] // 过滤置顶动态
+    const action = await dynamic.$('.bili-rich-text__action')
+    if (action) { // 展开
+      await action.click()
     }
-    // console.log('dynamic', dynamic)
+    image = await dynamic.screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
   } catch(e) {
     console.log(e)
   }
