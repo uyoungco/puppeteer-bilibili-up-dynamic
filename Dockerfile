@@ -12,7 +12,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 COPY package*.json ./
 
-RUN npm config set registry "https://registry.npm.taobao.org/" \
+RUN npm config set registry "https://registry.npmmirror.com/" \
     && npm install
 
 COPY . .
