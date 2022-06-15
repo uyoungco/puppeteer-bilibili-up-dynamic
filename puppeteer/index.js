@@ -27,9 +27,13 @@ const getScreenshot = async (id) => {
   let image
   try {
     const dynamicListDom = await page.waitForSelector("#page-dynamic")
-    const dynamic = await dynamicListDom.$(".bili-dyn-list__item")
+    const dynamic = await dynamicListDom.$$(".bili-dyn-list__item")
+    if (await dynamic[0].$('.bili-dyn-item__tag')) { // 判断数组下标0的dom是不是置顶
+      image = await dynamic[1].screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
+    } else {
+      image = await dynamic[0].screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
+    }
     // console.log('dynamic', dynamic)
-    image = await dynamic.screenshot({ quality: 100, type: "jpeg", encoding: "base64" })
   } catch(e) {
     console.log(e)
   }
@@ -69,14 +73,12 @@ const getScreenshot2 = async (cid) => {
   
   let image
   try {
-    const dynamicListDom = await page.waitForSelector("#page-dynamic")
-    const dynamic = await dynamicListDom.$(".bili-dyn-list__item")
+    const dynamicListDom = await page.waitForSelector(".card")
+    const dynamic = await dynamicListDom.$(".bili-dyn-item")
     image = await dynamic.screenshot({ quality: 100, type: "jpeg",encoding: "base64" })
   } catch(e) {
     console.log(e)
-    return null
   }
-  
   await page.close()
   await browser.close();
   if(image) {
